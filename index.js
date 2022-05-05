@@ -11,7 +11,7 @@ const gravity = 0.7;
 
 class Sprite {
     // parametros que estão sendo passados no constructor são dinâmicos
-    constructor({ position, velocity, color = 'red' }) {
+    constructor({ position, velocity, color = 'red', offset }) {
         this.position = position;
         this.velocity = velocity;
         this.width = 50;
@@ -19,7 +19,11 @@ class Sprite {
         this.lastKey = '';
         this.color = color
         this.attackBox = {
-            position: this.position,
+            position: {
+                x: this.position.x,
+                y: this.position.y,
+            },
+            offset,
             width: 100,
             height: 50,
         },
@@ -31,18 +35,20 @@ class Sprite {
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
         // attack box
-        if (this.isAttacking) {
+        // if (this.isAttacking) {
         c.fillStyle = 'yellow'
         c.fillRect (
             this.attackBox.position.x,
             this.attackBox.position.y,
             this.attackBox.width,
             this.attackBox.height)
-        }
+        // } 
     }
 
     update() {
         this.draw();
+        this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+        this.attackBox.position.y = this.position.y;
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
 
@@ -69,6 +75,10 @@ const player = new Sprite({
     velocity: {
         x: 0,
         y: 10
+    },
+    offset: {
+        x: 0,
+        y: 0
     }
 })
 
@@ -81,7 +91,11 @@ const enemy = new Sprite({
         x: 0,
         y: 10
     },
-    color: 'blue'
+    color: 'blue',
+    offset: {
+        x: -50,
+        y: 0
+    }
 })
 
 // Teclas pressionadas juntas possam mover
