@@ -35,14 +35,14 @@ class Sprite {
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
         // attack box
-        // if (this.isAttacking) {
+        if (this.isAttacking) {
         c.fillStyle = 'yellow'
         c.fillRect (
             this.attackBox.position.x,
             this.attackBox.position.y,
             this.attackBox.width,
             this.attackBox.height)
-        // } 
+        } 
     }
 
     update() {
@@ -117,7 +117,13 @@ const keys = {
     }
 }
 
-let lastKey
+/* desenvolver: 
+     SE o lado direito da caixa de ataque for maior ou igual ao lado esquerdo
+     do inimigo, será atacado.
+     SE o lado esquerdo da caixa de ataque for menor ou igual ao lado direito do inimigo
+     ele não será atacado
+     SE a base do eixo y da caixa de ataque for maior ou igual a parte superior do inimigo
+     ele não será atacado */
 
 function CollisionBetweenRectangular({ rectangle1, rectangle2 }) {
     return (
@@ -152,15 +158,6 @@ function animate() {
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
         enemy.velocity.x = 5
     }
-
-
-    /* desenvolver: 
-     SE o lado direito da caixa de ataque for maior ou igual ao lado esquerdo
-     do inimigo, será atacado.
-     SE o lado esquerdo da caixa de ataque for menor ou igual ao lado direito do inimigo
-     ele não será atacado
-     SE a base do eixo y da caixa de ataque for maior ou igual a parte superior do inimigo
-     ele não será atacado */
 
     // detect for collision
     if (
