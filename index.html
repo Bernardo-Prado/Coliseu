@@ -7,35 +7,53 @@
         }
     </style>
 </head>
+
 <body>
-  <!--Big container div-->
-  <div style="position: relative; display: inline-block">
-    <!-- Smaller container div -->
-    <div
-      style="
+    <!--Big container div-->
+    <div style="position: relative; display: inline-block">
+        <!-- Smaller container div -->
+        <div style="
         position: absolute;
         display: flex;
         width: 100%;
         align-items: center;
         padding: 20px;
-      "
-    >
-      <!-- Player health bar -->
-      <div style="background-color: yellow; height: 30px; width: 100%"></div>
-      <!-- Timer -->
-      <div
-        style="
-          background-color: red;
+      ">
+            <!-- Player health bar -->
+            <div style="position: relative; height: 30px; width: 100%; display: flex; justify-content: end;">
+                <div style="background-color: yellow; height: 30px; width: 100%;"></div>
+                <div id="playerHealth" style="
+            position: absolute;
+            background: red;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+          "></div>
+            </div>
+            <!-- Timer -->
+            <div style="
+          background-color: green;
           height: 100px;
           width: 100px;
           flex-shrink: 0;
-        "
-      ></div>
-      <!-- Enemy health bar -->
-      <div style="background-color: yellow; height: 30px; width: 100%"></div>
+        "></div>
+            <!-- Enemy health bar -->
+            <div style="position: relative; height: 30px; width: 100%">
+                <div style="background-color: yellow; height: 30px"></div>
+                <div id="enemyHealth" style="
+            position: absolute;
+            background: blue;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          "></div>
+            </div>
+            <div></div>
+        </div>
+        <canvas></canvas>
     </div>
-    <canvas></canvas>
-  </div>
 
-  <script src="index.js"></script>
+    <script src="index.js"></script>
 </body>
