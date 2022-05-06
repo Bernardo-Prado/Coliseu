@@ -1,14 +1,38 @@
+<head>
+    <!--box-sizing is used to change the box model's default property, 
+        used to calculate widths (widths) and heights (heights) of elements-->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
 <body>
   <!--Big container div-->
-  <div style="position: relative">
+  <div style="position: relative; display: inline-block">
     <!-- Smaller container div -->
-    <div style="position: absolute; display: flex;">
+    <div
+      style="
+        position: absolute;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding: 20px;
+      "
+    >
       <!-- Player health bar -->
-      <div style="background-color: yellow; height: 30px; width: 100px"></div>
+      <div style="background-color: yellow; height: 30px; width: 100%"></div>
       <!-- Timer -->
-      <div style="background-color: red; height: 100px; width: 100px"></div>
+      <div
+        style="
+          background-color: red;
+          height: 100px;
+          width: 100px;
+          flex-shrink: 0;
+        "
+      ></div>
       <!-- Enemy health bar -->
-      <div style="background-color: yellow; height: 30px; width: 100px"></div>
+      <div style="background-color: yellow; height: 30px; width: 100%"></div>
     </div>
     <canvas></canvas>
   </div>
