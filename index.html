@@ -1,3 +1,99 @@
-<canvas></canvas>
+<head>
+  <!--box-sizing is used to change the box model's default property, 
+        used to calculate widths (widths) and heights (heights) of elements-->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
 
-<script src="index.js"></script>
+<body>
+  <!--Big container div-->
+  <div style="position: relative; display: inline-block">
+    <!-- Smaller container div -->
+    <div
+      style="
+        position: absolute;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding: 20px;
+      "
+    >
+      <!-- Player health bar -->
+      <div
+        style="
+          position: relative;
+          height: 30px;
+          width: 100%;
+          display: flex;
+          justify-content: end;
+        "
+      >
+        <div style="background-color: red; height: 30px; width: 100%"></div>
+        <div
+          id="playerHealth"
+          style="
+            position: absolute;
+            background: yellow;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+          "
+        ></div>
+      </div>
+      <!-- Timer -->
+      <div
+        id="timer"
+        style="
+          background-color: rgba(47, 79, 79, 0.8);
+          height: 100px;
+          width: 100px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        10
+      </div>
+      <!-- Enemy health bar -->
+      <div style="position: relative; height: 30px; width: 100%">
+        <div style="background-color: red; height: 30px"></div>
+        <div
+          id="enemyHealth"
+          style="
+            position: absolute;
+            background: yellow;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          "
+        ></div>
+      </div>
+      <div></div>
+    </div>
+    <div
+      id="principalText"
+      style="
+        position: absolute;
+        color: white;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      "
+    >
+      EMPATE
+    </div>
+    <canvas></canvas>
+  </div>
+
+  <script src="index.js"></script>
+</body>
