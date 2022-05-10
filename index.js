@@ -147,6 +147,33 @@ function CollisionBetweenRectangular({
     );
 }
 
+function determineWinner({player, enemy}) {
+    if (player.health === enemy.health) {
+        document.querySelector('#principalText').innerHTML = "TIE";
+    } else if (player.health > enemy.health) {
+        document.querySelector('#principalText').innerHTML = "PLAYER 1 WINS";
+    } else if (enemy.health > player.health) {
+        document.querySelector('#principalText').innerHTML = "PLAYER 2 WINS";
+    }
+}
+
+let timer = 10;
+
+function decreaseTimer() {
+    if (timer > 0) {
+        setTimeout(decreaseTimer, 3000);
+        timer--;
+        document.querySelector('#timer').innerHTML = timer;
+    }
+
+    if (timer === 0) {
+        document.querySelector('#principalText').style.display = "flex";
+        determineWinner({player, enemy})        
+    }
+}
+
+decreaseTimer();
+
 // loop infinito
 function animate() {
     window.requestAnimationFrame(animate);
@@ -176,26 +203,31 @@ function animate() {
     if (
         CollisionBetweenRectangular({
             rectangle1: player,
-            rectangle2: enemy
+            rectangle2: enemy,
         }) &&
         player.isAttacking
     ) {
         player.isAttacking = false;
         enemy.health -= 20;
-        document.querySelector("#enemyHealth").style.width = enemy.health + '%'
-        console.log('attacked')
+        document.querySelector("#enemyHealth").style.width = enemy.health + "%";
+        console.log("attacked");
     }
 
     if (
         CollisionBetweenRectangular({
             rectangle1: enemy,
-            rectangle2: player
+            rectangle2: player,
         }) &&
         enemy.isAttacking
     ) {
         enemy.isAttacking = false;
         player.health -= 20;
-        document.querySelector("#playerHealth").style.width = player.health + '%'
+        document.querySelector("#playerHealth").style.width = player.health + "%";
+    }
+
+    // gameover based on health
+    if (enemy.health <= 0 || player.health <= 0) {
+        determineWinner({player, enemy})
     }
 }
 
