@@ -12,6 +12,23 @@ const gravity = 0.7;
 class Sprite {
     // parametros que estão sendo passados no constructor são dinâmicos
     constructor({
+        position
+    }) {
+        this.position = position;
+        this.width = 50;
+        this.height = 150;
+    }
+
+    draw() {}
+
+    update() {
+        this.draw();
+    }
+}
+
+class Fighter {
+    // parametros que estão sendo passados no constructor são dinâmicos
+    constructor({
         position,
         velocity,
         color = "red",
@@ -147,30 +164,38 @@ function CollisionBetweenRectangular({
     );
 }
 
-function determineWinner({player, enemy, timerId}) {
-    clearTimeout(timerId)
-    document.querySelector('#principalText').style.display = "flex";
+function determineWinner({
+    player,
+    enemy,
+    timerId
+}) {
+    clearTimeout(timerId);
+    document.querySelector("#principalText").style.display = "flex";
     if (player.health === enemy.health) {
-        document.querySelector('#principalText').innerHTML = "TIE";
+        document.querySelector("#principalText").innerHTML = "TIE";
     } else if (player.health > enemy.health) {
-        document.querySelector('#principalText').innerHTML = "PLAYER 1 WINS";
+        document.querySelector("#principalText").innerHTML = "PLAYER 1 WINS";
     } else if (enemy.health > player.health) {
-        document.querySelector('#principalText').innerHTML = "PLAYER 2 WINS";
+        document.querySelector("#principalText").innerHTML = "PLAYER 2 WINS";
     }
 }
 
 let timer = 60;
-let timerId
+let timerId;
 
 function decreaseTimer() {
     if (timer > 0) {
         timerId = setTimeout(decreaseTimer, 3000);
         timer--;
-        document.querySelector('#timer').innerHTML = timer;
+        document.querySelector("#timer").innerHTML = timer;
     }
 
     if (timer === 0) {
-        determineWinner({player, enemy, timerId})        
+        determineWinner({
+            player,
+            enemy,
+            timerId
+        });
     }
 }
 
@@ -229,7 +254,11 @@ function animate() {
 
     // gameover based on health
     if (enemy.health <= 0 || player.health <= 0) {
-        determineWinner({player, enemy, timerId})
+        determineWinner({
+            player,
+            enemy,
+            timerId
+        });
     }
 }
 
